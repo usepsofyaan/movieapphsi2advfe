@@ -1,0 +1,63 @@
+"use client";
+import { useState } from "react";
+import Image from "next/image";
+import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid";
+
+export default function Login() {
+  const [showPassword, setShowPassword] = useState(false);
+  return (
+    <div
+      className="min-h-screen flex items-center justify-center bg-cover bg-center"
+      style={{ backgroundImage: "url('/backlogin.jpg')" }} // ganti dengan nama file gambar kamu
+    >
+      <div className="bg-[#181A1CD6] rounded-xl shadow-xl p-6 w-full max-w-md">
+        {/* Logo */}
+        <div className="flex justify-center mb-4">
+          <Image src="/logo.jpg" alt="Logo" width={80} height={80} />
+        </div>
+
+        {/* Teks Selamat Datang */}
+
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold text-[#ffffff] mb-[5px]">Masuk</h2>
+          <h5 className="text-2xl font-bold text-[#ffffff]">Selamat Datang</h5>
+        </div>
+
+        {/* Form Login */}
+        <form>
+          <div className="mb-4">
+            <label className="block mb-1 font-medium text-[#ffffff]">Username</label>
+            <input type={showPassword ? "text" : "password"} className="w-full border rounded-[24px] px-3 py-2 text-[#ffffff]" placeholder="Masukkan username" />
+          </div>
+
+          <div className="mb-4">
+            <label className="block mb-1 font-medium text-[#ffffff]">Kata Sandi</label>
+            <input type="password" className="w-full border rounded-[24px] px-3 py-2 text-[#ffffff]" placeholder="Masukkan kata sandi" />
+          </div>
+
+          {/* Link Daftar & Lupa Sandi */}
+          <div className="flex justify-between text-sm mb-4">
+            <a href="/daftar" className="text-[#ffffff]">
+              Belum punya akun? Daftar
+            </a>
+            <a href="/lupa-password" className="text-[#ffffff]">
+              Lupa kata sandi?
+            </a>
+          </div>
+
+          {/* Tombol Masuk */}
+          <button type="submit" className="w-full bg-[#3D4142] text-white py-2 rounded-[24px] font-semibold">
+            Masuk
+          </button>
+
+          {/* Atau Masuk dengan Google */}
+          <div className="text-center mt-4 text-sm text-gray-600">atau</div>
+          <button type="button" className="w-full border border-gray-300 mt-2 py-2 rounded-[24px] flex items-center justify-center hover:bg-gray-100">
+            <Image src="/google.png" alt="Google" width={20} height={20} className="mr-2" />
+            Masuk dengan Google
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
