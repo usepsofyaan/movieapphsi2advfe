@@ -8,7 +8,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: "url('/backlogin.jpg')" }}>
-      <div className="bg-[#181A1CD6] rounded-xl shadow-xl p-6 w-full max-w-md">
+      <div className="bg-[#181A1CD6] rounded-[8px] shadow-xl p-[24px] w-full max-w-md m-8">
         {/* Logo */}
         <div className="flex justify-center mb-4">
           <Image src="/logo.jpg" alt="Logo" width={80} height={80} />
@@ -16,22 +16,22 @@ export default function Login() {
 
         {/* Teks Selamat Datang */}
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-[#ffffff] mb-[5px]">Masuk</h2>
-          <h5 className="text-2xl font-bold text-[#ffffff]">Selamat Datang</h5>
+          <h3 className="text-[32px] font-bold text-[#ffffff] mb-[5px]">Masuk</h3>
+          <h3 className="text-[16px] font-normal text-[#ffffff]">Selamat Datang Kembali!</h3>
         </div>
 
         {/* Form Login */}
         <form>
-          <div className="mb-4">
-            <label className="block mb-1 font-medium text-[#ffffff]">Username</label>
-            <input type="text" className="w-full border rounded-[24px] px-3 py-2 text-[#ffffff]" placeholder="Masukkan username" />
+          <div className="mb-4 flex flex-col space-y-[6px]">
+            <label className="font-medium text-[#ffffff]">Username</label>
+            <input type="text" className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff]" placeholder="Masukkan username" />
           </div>
 
           {/* Kata sandi*/}
-          <div className="mb-4">
-            <label className="block mb-1 font-medium text-[#ffffff]">Kata Sandi</label>
+          <div className="mb-4 flex flex-col space-y-[12px]">
+            <label className="block font-medium text-[#ffffff]">Kata Sandi</label>
             <div className="relative">
-              <input type={showPassword ? "text" : "password"} className="w-full border rounded-[24px] px-3 py-2 text-[#ffffff] pr-10 bg-transparent" placeholder="Masukkan kata sandi" />
+              <input type={showPassword ? "text" : "password"} className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff] pr-10 bg-transparent" placeholder="Masukkan kata sandi" />
               <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white">
                 {showPassword ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
               </button>
