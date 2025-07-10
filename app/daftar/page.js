@@ -12,7 +12,7 @@ export default function Daftar() {
       <div className="bg-[#181A1CD6] rounded-xl shadow-xl p-6 w-full max-w-md">
         {/* Logo */}
         <div className="flex justify-center mb-4">
-          <Image src="/logo.jpg" alt="Logo" width={80} height={80} />
+          <Image src="/logo.png" alt="Logo" width={80} height={80} />
         </div>
 
         {/* Teks Selamat Datang */}
@@ -25,14 +25,14 @@ export default function Daftar() {
         <form>
           <div className="mb-4">
             <label className="block mb-1 font-medium text-[#ffffff]">Username</label>
-            <input type="text" className="w-full border rounded-[24px] px-3 py-2 text-[#ffffff]" placeholder="Masukkan username" />
+            <input type="text" className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff]" placeholder="Masukkan username" />
           </div>
 
           {/* Kata sandi*/}
           <div className="mb-4">
             <label className="block mb-1 font-medium text-[#ffffff]">Kata Sandi</label>
             <div className="relative">
-              <input type={showPassword ? "text" : "password"} className="w-full border rounded-[24px] px-3 py-2 text-[#ffffff] pr-10 bg-transparent" placeholder="Masukkan kata sandi" />
+              <input type={showPassword ? "text" : "password"} className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff] pr-10 bg-transparent" placeholder="Masukkan kata sandi" />
               <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white">
                 {showPassword ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
               </button>
@@ -41,7 +41,7 @@ export default function Daftar() {
           <div className="mb-4">
             <label className="block mb-1 font-medium text-[#ffffff]">Konfirmasi Kata Sandi</label>
             <div className="relative">
-              <input type={showPassword2 ? "text" : "password"} className="w-full border rounded-[24px] px-3 py-2 text-[#ffffff] pr-10 bg-transparent" placeholder="Masukkan kata sandi" />
+              <input type={showPassword2 ? "text" : "password"} className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff] pr-10 bg-transparent" placeholder="Masukkan kata sandi" />
               <button type="button" onClick={() => setShowPassword2(!showPassword2)} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white">
                 {showPassword2 ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
               </button>
@@ -59,13 +59,13 @@ export default function Daftar() {
           </div>
 
           {/* Tombol Masuk */}
-          <button type="submit" className="w-full bg-[#3D4142] text-white py-2 rounded-[24px] font-semibold">
+          <button type="submit" className="w-full bg-[#3D4142] text-white py-2 border border-[#E7E3FC3B] rounded-[24px] font-semibold">
             Daftar
           </button>
 
           {/* Atau Masuk dengan Google */}
           <div className="text-center mt-4 text-sm text-gray-600">atau</div>
-          <button type="button" className="w-full border border-gray-300 mt-2 py-2 rounded-[24px] flex items-center justify-center hover:bg-gray-100">
+          <button type="button" className="w-full border border-[#E7E3FC3B] py-2 rounded-[24px] flex items-center justify-center hover:bg-gray-100">
             <Image src="/google.png" alt="Google" width={20} height={20} className="mr-2" />
             Daftar dengan Google
           </button>

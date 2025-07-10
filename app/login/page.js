@@ -11,7 +11,7 @@ export default function Login() {
       <div className="bg-[#181A1CD6] rounded-[8px] shadow-xl p-[24px] w-full max-w-md m-8">
         {/* Logo */}
         <div className="flex justify-center mb-4">
-          <Image src="/logo.jpg" alt="Logo" width={80} height={80} />
+          <Image src="/logo.png" alt="Logo" width={80} height={80} />
         </div>
 
         {/* Teks Selamat Datang */}
