@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { UserIcon } from "@heroicons/react/24/outline";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -32,12 +33,18 @@ export default function Navbar() {
 
         {/* Dropdown */}
         {open && (
-          <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-lg shadow-lg z-50">
-            <Link href="/login" className="block px-4 py-2 hover:bg-gray-300 rounded-lg">
-              Masuk
+          <div className="absolute right-0 mt-2 w-[113px] bg-[#181A1C] text-white rounded-[4px] shadow-lg z-50">
+            <Link href="/login" className="flex items-center gap-2 px-4 py-2 rounded-lg hover:text-blue-500 transition-colors duration-200">
+              <UserIcon className="h-5 w-5" />
+              Profil Saya
             </Link>
-            <Link href="/daftar" className="block px-4 py-2 hover:bg-gray-300 rounded-lg">
-              Daftar
+            <Link href="/daftar" className="flex items-center gap-2 px-4 py-2 rounded-lg hover:text-blue-500 transition-colors duration-200">
+              <Image src="/star.png" alt="star" width={40} height={40} />
+              Ubah Premium
+            </Link>
+            <Link href="/daftar" className="flex items-center gap-2 px-4 py-2 rounded-lg hover:text-blue-500 transition-colors duration-200">
+              <Image src="/login-variant.png" alt="signout" width={16} height={16} />
+              Keluar
             </Link>
           </div>
         )}
