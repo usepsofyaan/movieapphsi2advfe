@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       fontFamily: {
         lato: ["var(--font-lato)"],
+        londrina: "var(--font-londrina)",
       },
     },
   },

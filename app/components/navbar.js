@@ -8,17 +8,23 @@ import { UserIcon } from "@heroicons/react/24/outline";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   return (
-    <nav className="flex items-center justify-between px-[80px] py-[25px] bg-black text-white">
+    <nav className="flex items-center justify-between px-[20px] py-[6px] md:px-[80px] md:py-[25px] bg-[#181A1C] text-white">
       {/* Logo dan Menu */}
-      <div className="flex items-center gap-[80px]">
-        <Image src="/logo.png" alt="Logo" width={103.55} height={44} />
-        <Link href="/series" className="hover:underline font-[-18px] font-medium">
+      <div className="flex flex-row items-center gap-[12px] md:flex-row md:gap-[80px]">
+        <div className="flex flex-column items-center">
+          <Image src="/logo.png" alt="Logo" width={30} height={26} />
+          <Link href="/page" className="font-londrina hidden md:inline text-[32px]">
+            CHILL
+          </Link>
+        </div>
+
+        <Link href="/series" className="hover:underline text-[10px] md:text-[18px] font-medium">
           Series
         </Link>
-        <Link href="/film" className="hover:underline font-[-18px] font-medium">
+        <Link href="/film" className="hover:underline text-[10px] md:text-[18px] font-medium">
           Film
         </Link>
-        <Link href="/daftar-saya" className="hover:underline font-[-18px] font-medium">
+        <Link href="/daftar-saya" className="hover:underline text-[10px] md:text-[18px] font-medium">
           Daftar Saya
         </Link>
       </div>
@@ -27,7 +33,7 @@ export default function Navbar() {
       <div className="relative">
         {/* Avatar + Chevron dalam satu button */}
         <button onClick={() => setOpen(!open)} className="flex items-center gap-2 px-2 py-1 rounded-full">
-          <Image src="/avatar.png" alt="Avatar" width={40} height={40} className="object-cover w-10 h-10 rounded-full" />
+          <Image src="/avatar.png" alt="Avatar" width={40} height={40} className="object-cover w-[20px] h-[20px] md:w-[40px] md:h-[40px] rounded-full" />
           <ChevronDownIcon className="w-5 h-5 text-white" />
         </button>
 
