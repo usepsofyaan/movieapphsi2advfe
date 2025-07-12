@@ -49,8 +49,15 @@ export default function Home() {
 
           <div className="flex overflow-hidden gap-4">
             {visibleItems.map((src, index) => (
-              <div key={index} className="w-[302px] h-[162px] flex-shrink-0 rounded-lg overflow-hidden">
+              <div key={index} className="relative w-[302px] h-[162px] flex-shrink-0 rounded-lg overflow-hidden">
+                {/* Gambar */}
                 <Image src={src} alt={`Film ${startIndex + index + 1}`} width={302} height={162} className="object-cover w-full h-full" />
+
+                {/* Overlay teks */}
+                <div className="absolute top-32 left-0 right-0 px-3 py-2 flex justify-between items-start bg-gradient-to-b from-black/60 to-transparent text-white text-xs md:text-sm font-semibold">
+                  <span>Judul Film</span>
+                  <span className="text-right">Rating: ⭐ 8.5{index + 1}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -91,7 +98,7 @@ export default function Home() {
 
           <div className="flex overflow-hidden gap-4">
             {visibleItems.map((src, index) => (
-              <div key={index} className="w-[302px] h-[162px] flex-shrink-0 rounded-lg overflow-hidden">
+              <div key={index} className="w-[95px] h-[145px] md:w-[234px] md:h-[365px] flex-shrink-0 rounded-lg overflow-hidden">
                 <Image src={src} alt={`Film ${startIndex + index + 1}`} width={302} height={162} className="object-cover w-full h-full" />
               </div>
             ))}
@@ -112,7 +119,7 @@ export default function Home() {
 
           <div className="flex overflow-hidden gap-4">
             {visibleItems.map((src, index) => (
-              <div key={index} className="w-[302px] h-[162px] flex-shrink-0 rounded-lg overflow-hidden">
+              <div key={index} className="w-[95px] h-[145px] md:w-[234px] md:h-[365px] flex-shrink-0 rounded-lg overflow-hidden">
                 <Image src={src} alt={`Film ${startIndex + index + 1}`} width={302} height={162} className="object-cover w-full h-full" />
               </div>
             ))}
@@ -123,6 +130,49 @@ export default function Home() {
           </button>
         </div>
       </section>
+      <footer className="bg-[#181A1C] text-white p-[20px] md:px-[80px] py-10">
+        <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-[40px] p-[20px]">
+          {/*Logo + Hak Cipta */}
+          <div>
+            <div className="mb-4 gap-[40px] md:gap-[26px] w-[28px] h-[25px] md:w-[50px] md:h-[44px]">
+              <Image src="/logo.png" alt="Logo" width={100} height={40} />
+              <Link href="/page" className="font-londrina hidden md:inline text-[32px]">
+                CHILL
+              </Link>
+            </div>
+            <p className="text-sm text-gray-400 text-[12px] md:text-[16px]">© 2025 Chill All rights reserved.</p>
+          </div>
+
+          {/* Kolom 2: Genre */}
+          <div>
+            <h3 className="text-lg font-semibold mb-3">Genre</h3>
+            <ul className="grid grid-cols-4 gap-x-6 gap-y-1 text-sm text-gray-300">
+              {["Aksi", "Anak-anak", "Anime", "Britania", "Drama", "Fantasi Ilmiah", "Kejahatan", "Kdrama", "Komedi", "Petualangan", "Perang", "Romantis", "Sains & Alam"].map((genre, idx) => (
+                <li key={idx}>{genre}</li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Kolom 3: Bantuan */}
+          <div>
+            <h3 className="text-lg font-semibold mb-3">Bantuan</h3>
+            <ul className="space-y-1 text-sm text-gray-300">
+              <li>
+                <Link href="/faq">FAQ</Link>
+              </li>
+              <li>
+                <Link href="/kontak">Kontak Kami</Link>
+              </li>
+              <li>
+                <Link href="/privasi">Privasi</Link>
+              </li>
+              <li>
+                <Link href="/syarat">Syarat & Ketentuan</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
