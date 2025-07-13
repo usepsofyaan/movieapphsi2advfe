@@ -3,7 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "./components/navbar";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 const thumbnails = ["/film1.png", "/film2.png", "/film3.png", "/film4.png", "/film5.png", "/thumb6.jpg", "/thumb7.jpg", "/thumb8.jpg"];
@@ -12,6 +12,10 @@ const ITEMS_PER_PAGE = 4;
 
 export default function Home() {
   const [startIndex, setStartIndex] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const genreList = ["Aksi", "Anak-anak", "Anime", "Britania", "Drama", "Fantasi Ilmiah", "Kejahatan", "Kdrama", "Komedi", "Petualangan", "Perang", "Romantis", "Sains & Alam"];
+  const bantuanList = ["FAQ", "Kontak Kami", "Privasi", "Syarat dan Ketentuan"];
 
   const prev = () => {
     setStartIndex((prev) => Math.max(prev - 1, 0));
@@ -136,40 +140,61 @@ export default function Home() {
           <div>
             <div className="mb-4 gap-[40px] md:gap-[26px] w-[28px] h-[25px] md:w-[50px] md:h-[44px]">
               <Image src="/logo.png" alt="Logo" width={100} height={40} />
-              <Link href="/page" className="font-londrina hidden md:inline text-[32px]">
-                CHILL
-              </Link>
             </div>
             <p className="text-sm text-gray-400 text-[12px] md:text-[16px]">© 2025 Chill All rights reserved.</p>
           </div>
 
           {/* Kolom 2: Genre */}
           <div>
-            <h3 className="text-lg font-semibold mb-3">Genre</h3>
-            <ul className="grid grid-cols-4 gap-x-6 gap-y-1 text-sm text-gray-300">
-              {["Aksi", "Anak-anak", "Anime", "Britania", "Drama", "Fantasi Ilmiah", "Kejahatan", "Kdrama", "Komedi", "Petualangan", "Perang", "Romantis", "Sains & Alam"].map((genre, idx) => (
-                <li key={idx}>{genre}</li>
-              ))}
-            </ul>
+            {/*Toggle Button (di mobile) */}
+            <button onClick={() => setOpen(!open)} className="flex items-center justify-between w-full mb-3 md:hidden">
+              <h3 className="text-lg font-semibold">Genre</h3>
+              {open ? <ChevronDownIcon className="w-5 h-5 text-white" /> : <ChevronRightIcon className="w-5 h-5 text-white" />}
+            </button>
+
+            {/* Mobile: dropdown */}
+            {open && (
+              <ul className="grid grid-cols-2 gap-x-6 gap-y-1 text-sm text-gray-300 md:hidden">
+                {genreList.map((genre, idx) => (
+                  <li key={idx}>{genre}</li>
+                ))}
+              </ul>
+            )}
+
+            {/* Desktop*/}
+            <div className="hidden md:block md:gap-x-[28px]">
+              <h3 className="text-lg font-semibold mb-3">Genre</h3>
+              <ul className="grid [grid-template-columns:repeat(4,minmax(120px,1fr))] gap-x-[28px] gap-y-[13px] text-sm text-gray-300">
+                {genreList.map((genre, idx) => (
+                  <li key={idx}>{genre}</li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Kolom 3: Bantuan */}
-          <div>
-            <h3 className="text-lg font-semibold mb-3">Bantuan</h3>
-            <ul className="space-y-1 text-sm text-gray-300">
-              <li>
-                <Link href="/faq">FAQ</Link>
-              </li>
-              <li>
-                <Link href="/kontak">Kontak Kami</Link>
-              </li>
-              <li>
-                <Link href="/privasi">Privasi</Link>
-              </li>
-              <li>
-                <Link href="/syarat">Syarat & Ketentuan</Link>
-              </li>
-            </ul>
+          <div className="ml-[200px]">
+            <button onClick={() => setOpen2(!open2)} className="flex items-center justify-between w-full mb-3 md:hidden">
+              <h3 className="text-lg font-semibold mb-3">Bantuan</h3>
+              {open ? <ChevronDownIcon className="w-5 h-5 text-white" /> : <ChevronRightIcon className="w-5 h-5 text-white" />}
+            </button>
+
+            {open2 && (
+              <ul className="grid grid-cols-2 gap-x-6 gap-y-1 text-sm text-gray-300 md:hidden">
+                {bantuanList.map((genre, idx) => (
+                  <li key={idx}>{genre}</li>
+                ))}
+              </ul>
+            )}
+
+            <div className="hidden md:block">
+              <h3 className="text-lg font-semibold mb-3">Bantuan</h3>
+              <ul className="grid grid-cols gap-y-[15px] text-sm text-gray-300">
+                {bantuanList.map((genre, idx) => (
+                  <li key={idx}>{genre}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </footer>
