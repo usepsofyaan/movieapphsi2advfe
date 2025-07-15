@@ -27,18 +27,30 @@ export default function Home() {
 
   const visibleItems = thumbnails.slice(startIndex, startIndex + ITEMS_PER_PAGE);
   return (
-    <main className="min-h-screen bg-[#121212] text-white">
+    <main className="min-h-screen bg-[#181A1C] text-white">
       <Navbar />
       <div className="width-full flex">
-        <div className="relative w-full h-[300px] md:h-[587px]">
+        <div className="relative w-full h-[300px] md:h-[500px]">
           <Image src="/film1.png" alt="film1" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#181A1C] via-transparent to-transparent" />
           <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center px-4 md:px-20 py-8">
-            <h2 className="text-xl md:text-3xl font-bold mb-4">Duty After School</h2>
-            <p className="text-sm md:text-base mb-6 max-w-xl">Sebuah benda tak dikenal...</p>
+            <h2 className="text-[24px] md:text-[48px] font-bold mb-4">Duty After School</h2>
+            {/* Versi mobile (teks terpotong) */}
+            <p className="text-[12px] mb-6 max-w-xl line-clamp-2 md:hidden">
+              Sebuah benda tak dikenal mengambil alih dunia. Dalam keputusasaan, Departemen Pertahanan mulai merekrut lebih banyak tentara, termasuk siswa sekolah menengah. Mereka pun segera menjadi pejuang garis depan dalam perang.
+            </p>
+
+            {/* Versi desktop (teks lengkap) */}
+            <p className="hidden md:block text-[18px] mb-6 max-w-xl">
+              Sebuah benda tak dikenal mengambil alih dunia. Dalam keputusasaan, Departemen Pertahanan mulai merekrut lebih banyak tentara, termasuk siswa sekolah menengah. Mereka pun segera menjadi pejuang garis depan dalam perang.
+            </p>
+
             <div className="flex flex-wrap items-center gap-2">
-              <button className="text-sm md:text-base px-4 py-2 rounded-full bg-white text-black">Mulai</button>
-              <button className="text-sm md:text-base px-4 py-2 rounded-full bg-white text-black">Selengkapnya</button>
+              <button className="text-[12px] md:text-[16px] px-[12px] py-[4px] md:px-[26px] md:py-[10px] rounded-full bg-[#0F1E93] text-white">Mulai</button>
+              <button className="flex flex-cols text-[12px] md:text-[16px] px-[12px] py-[4px] md:py-[10px] md:px-[26px] rounded-full bg-[#22282A] text-white">
+                <InformationCircleIcon className="w-[24px] h-[24px] px-[2px]" /> Selengkapnya
+              </button>
+              <button className="text-sm md:text-base p-[4px] md:p-[10px] border-[1px] rounded-[24px] text-[#C1C2C4]">18+</button>
             </div>
           </div>
         </div>
@@ -58,9 +70,9 @@ export default function Home() {
                 <Image src={src} alt={`Film ${startIndex + index + 1}`} width={302} height={162} className="object-cover w-full h-full" />
 
                 {/* Overlay teks */}
-                <div className="absolute top-32 left-0 right-0 px-3 py-2 flex justify-between items-start bg-gradient-to-b from-black/60 to-transparent text-white text-xs md:text-sm font-semibold">
-                  <span>Judul Film</span>
-                  <span className="text-right">Rating: ⭐ 8.5{index + 1}</span>
+                <div className="absolute top-30 left-0 right-0 px-3 py-2 flex justify-between items-start text-white text-xs md:text-sm font-semibold">
+                  <span className="text-[14px] md:text-[18px]">Judul Film</span>
+                  <span className="text-right text-[14px] md:text-[18px]">⭐ 8.5/10</span>
                 </div>
               </div>
             ))}
@@ -83,6 +95,7 @@ export default function Home() {
             {visibleItems.map((src, index) => (
               <div key={index} className="w-[95px] h-[145px] md:w-[234px] md:h-[365px] flex-shrink-0 rounded-lg overflow-hidden">
                 <Image src={src} alt={`Film ${startIndex + index + 1}`} width={234} height={365} className="object-cover w-full h-full" />
+                <span className="bg-white">Episode Baru</span>
               </div>
             ))}
           </div>
@@ -135,20 +148,20 @@ export default function Home() {
         </div>
       </section>
       <footer className="bg-[#181A1C] text-white p-[20px] md:px-[80px] py-10">
-        <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-[40px] p-[20px]">
+        <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-[8px] p-[20px]">
           {/*Logo + Hak Cipta */}
           <div>
             <div className="mb-4 gap-[40px] md:gap-[26px] w-[28px] h-[25px] md:w-[50px] md:h-[44px]">
               <Image src="/logo.png" alt="Logo" width={100} height={40} />
             </div>
-            <p className="text-sm text-gray-400 text-[12px] md:text-[16px]">© 2025 Chill All rights reserved.</p>
+            <p className="text-gray-400 text-[12px] md:text-[16px] mt:[12px] md:mt-[26px]">© 2025 Chill All rights reserved.</p>
           </div>
 
           {/* Kolom 2: Genre */}
           <div>
             {/*Toggle Button (di mobile) */}
             <button onClick={() => setOpen(!open)} className="flex items-center justify-between w-full mb-3 md:hidden">
-              <h3 className="text-lg font-semibold">Genre</h3>
+              <h3 className="text-[16px] font-medium">Genre</h3>
               {open ? <ChevronDownIcon className="w-5 h-5 text-white" /> : <ChevronRightIcon className="w-5 h-5 text-white" />}
             </button>
 
@@ -173,10 +186,10 @@ export default function Home() {
           </div>
 
           {/* Kolom 3: Bantuan */}
-          <div className="ml-[200px]">
+          <div>
             <button onClick={() => setOpen2(!open2)} className="flex items-center justify-between w-full mb-3 md:hidden">
-              <h3 className="text-lg font-semibold mb-3">Bantuan</h3>
-              {open ? <ChevronDownIcon className="w-5 h-5 text-white" /> : <ChevronRightIcon className="w-5 h-5 text-white" />}
+              <h3 className="text-[16px] font-medium">Bantuan</h3>
+              {open2 ? <ChevronDownIcon className="w-5 h-5 text-white" /> : <ChevronRightIcon className="w-5 h-5 text-white" />}
             </button>
 
             {open2 && (
@@ -188,7 +201,7 @@ export default function Home() {
             )}
 
             <div className="hidden md:block">
-              <h3 className="text-lg font-semibold mb-3">Bantuan</h3>
+              <h3 className="text-lg font-semibold">Bantuan</h3>
               <ul className="grid grid-cols gap-y-[15px] text-sm text-gray-300">
                 {bantuanList.map((genre, idx) => (
                   <li key={idx}>{genre}</li>

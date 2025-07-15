@@ -1,4 +1,4 @@
-"use client"; // jika pakai app router Next.js
+"use client"; // app router Next.js
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,13 +39,13 @@ export default function Navbar() {
 
         {/* Dropdown */}
         {open && (
-          <div className="absolute right-0 mt-2 w-[113px] bg-[#181A1C] text-white rounded-[4px] shadow-lg z-50">
+          <div className="absolute right-0 mt-2 w-[113px] md:w-[200px] bg-[#181A1C] text-white rounded-[4px] shadow-lg z-50">
             <Link href="/login" className="flex items-center gap-2 px-4 py-2 rounded-lg hover:text-blue-500 transition-colors duration-200">
               <UserIcon className="h-5 w-5" />
               Profil Saya
             </Link>
             <Link href="/daftar" className="flex items-center gap-2 px-4 py-2 rounded-lg hover:text-blue-500 transition-colors duration-200">
-              <Image src="/star.png" alt="star" width={40} height={40} />
+              <Image src="/star.png" alt="star" width={16} height={16} />
               Ubah Premium
             </Link>
             <Link href="/daftar" className="flex items-center gap-2 px-4 py-2 rounded-lg hover:text-blue-500 transition-colors duration-200">

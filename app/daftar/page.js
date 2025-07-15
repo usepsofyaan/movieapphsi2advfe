@@ -8,7 +8,7 @@ export default function Daftar() {
   const [showPassword2, setShowPassword2] = useState(false);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: "url('/backlogin.jpg')" }}>
+    <div className="min-h-screen flex items-center justify-center bg-cover bg-center p-[20px]" style={{ backgroundImage: "url('/backlogin.jpg')" }}>
       <div className="bg-[#181A1CD6] rounded-xl shadow-xl p-6 w-full max-w-md">
         {/* Logo */}
         <div className="flex justify-center mb-4">
