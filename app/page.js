@@ -6,9 +6,10 @@ import Navbar from "./components/navbar";
 import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
-const thumbnails = ["/film1.png", "/film2.png", "/film3.png", "/film4.png", "/film5.png", "/thumb6.jpg", "/thumb7.jpg", "/thumb8.jpg"];
+const thumbnails = ["/film1.png", "/film2.png", "/film3.png", "/film4.png", "/film5.png", "/film10.png", "/film11.png", "/film13.png"];
 
 const ITEMS_PER_PAGE = 4;
+const ITEMS_SEC_1 = 5;
 
 export default function Home() {
   const [startIndex, setStartIndex] = useState(0);
@@ -26,6 +27,7 @@ export default function Home() {
   };
 
   const visibleItems = thumbnails.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const visibleItems2 = thumbnails.slice(startIndex, startIndex + ITEMS_SEC_1);
   return (
     <main className="min-h-screen bg-[#181A1C] text-white">
       <Navbar />
@@ -55,6 +57,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Melanjutkan Tonton Film */}
       <section className="px-4 md:px-20 py-[20px] md:py-[40px]">
         <h2 className="text-[20px] md:text-[32px] font-bold mb-4">Melanjutkan Tonton Film</h2>
         <div className="relative">
@@ -83,6 +87,8 @@ export default function Home() {
           </button>
         </div>
       </section>
+
+      {/* Top Rating */}
       <section className="px-4 md:px-20 py-[20px] md:py-[40px]">
         <h2 className="text-[20px] md:text-[32px] font-bold mb-4">Top Rating Film dan Series Hari Ini</h2>
         <div className="relative">
@@ -92,7 +98,7 @@ export default function Home() {
           </button>
 
           <div className="flex overflow-hidden gap-4">
-            {visibleItems.map((src, index) => (
+            {visibleItems2.map((src, index) => (
               <div key={index} className="w-[95px] h-[145px] md:w-[234px] md:h-[365px] flex-shrink-0 rounded-lg overflow-hidden">
                 <Image src={src} alt={`Film ${startIndex + index + 1}`} width={234} height={365} className="object-cover w-full h-full" />
                 <span className="bg-white">Episode Baru</span>
@@ -105,6 +111,8 @@ export default function Home() {
           </button>
         </div>
       </section>
+
+      {/* Film Trending */}
       <section className="px-4 md:px-20 py-[20px] md:py-[40px]">
         <h2 className="text-[20px] md:text-[32px] font-bold mb-4">Film Trending</h2>
         <div className="relative">
@@ -114,7 +122,7 @@ export default function Home() {
           </button>
 
           <div className="flex overflow-hidden gap-4">
-            {visibleItems.map((src, index) => (
+            {visibleItems2.map((src, index) => (
               <div key={index} className="w-[95px] h-[145px] md:w-[234px] md:h-[365px] flex-shrink-0 rounded-lg overflow-hidden">
                 <Image src={src} alt={`Film ${startIndex + index + 1}`} width={302} height={162} className="object-cover w-full h-full" />
               </div>
@@ -126,6 +134,8 @@ export default function Home() {
           </button>
         </div>
       </section>
+
+      {/* Rilis Baru */}
       <section className="px-4 md:px-20 py-[20px] md:py-[40px]">
         <h2 className="text-[20px] md:text-[32px] font-bold mb-4">Rilis Baru</h2>
         <div className="relative">
@@ -135,7 +145,7 @@ export default function Home() {
           </button>
 
           <div className="flex overflow-hidden gap-4">
-            {visibleItems.map((src, index) => (
+            {visibleItems2.map((src, index) => (
               <div key={index} className="w-[95px] h-[145px] md:w-[234px] md:h-[365px] flex-shrink-0 rounded-lg overflow-hidden">
                 <Image src={src} alt={`Film ${startIndex + index + 1}`} width={302} height={162} className="object-cover w-full h-full" />
               </div>
