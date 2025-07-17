@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 
 export default function Daftar() {
@@ -9,16 +10,21 @@ export default function Daftar() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-cover bg-center p-[20px]" style={{ backgroundImage: "url('/backlogin.jpg')" }}>
-      <div className="bg-[#181A1CD6] rounded-xl shadow-xl p-6 w-full max-w-md">
+      <div className="bg-[#181A1CD6] rounded-[8px] shadow-xl p-[24px] w-full max-w-md">
         {/* Logo */}
         <div className="flex justify-center mb-4">
-          <Image src="/logo.png" alt="Logo" width={80} height={80} />
+          <div className="flex flex-cols items-center">
+            <Image src="/logo.png" alt="Logo" width={50} height={44} />
+            <Link href="/page" className="md:inline text-[28px] md:text-[50px]">
+              CHILL
+            </Link>
+          </div>
         </div>
 
         {/* Teks Selamat Datang */}
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-[#ffffff] mb-[5px]">Daftar</h2>
-          <h5 className="text-2xl font-bold text-[#ffffff]">Selamat Datang</h5>
+          <h3 className="text-[18px] md:text-[32px] font-bold text-[#ffffff] mb-[5px]">Daftar</h3>
+          <h3 className="text-[18px] md:text-[32px] font-bold text-[#ffffff]">Selamat Datang Kembali</h3>
         </div>
 
         {/* Form Login */}
@@ -52,9 +58,6 @@ export default function Daftar() {
           <div className="flex justify-between text-sm mb-4">
             <a href="/login" className="text-[#ffffff]">
               Sudah punya akun? Masuk
-            </a>
-            <a href="/lupa-password" className="text-[#ffffff]">
-              Lupa kata sandi?
             </a>
           </div>
 

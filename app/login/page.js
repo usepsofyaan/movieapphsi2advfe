@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 
 export default function Login() {
@@ -11,12 +12,17 @@ export default function Login() {
       <div className="bg-[#181A1CD6] rounded-[8px] shadow-xl p-[24px] w-full max-w-md m-8">
         {/* Logo */}
         <div className="flex justify-center mb-4">
-          <Image src="/logo.png" alt="Logo" width={80} height={80} />
+          <div className="flex flex-cols items-center">
+            <Image src="/logo.png" alt="Logo" width={50} height={44} />
+            <Link href="/page" className="md:inline text-[28px] md:text-[50px]">
+              CHILL
+            </Link>
+          </div>
         </div>
 
         {/* Teks Selamat Datang */}
         <div className="text-center mb-6">
-          <h3 className="text-[32px] font-bold text-[#ffffff] mb-[5px]">Masuk</h3>
+          <h3 className="text-[18px] md:text-[32px] font-bold text-[#ffffff] mb-[5px]">Masuk</h3>
           <h3 className="text-[16px] font-normal text-[#ffffff]">Selamat Datang Kembali!</h3>
         </div>
 
