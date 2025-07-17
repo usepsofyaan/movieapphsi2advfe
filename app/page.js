@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "./components/navbar";
 import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
@@ -200,7 +199,7 @@ export default function Home() {
           {/* Bantuan */}
           <div className="min-w-0 ">
             <button onClick={() => setOpen2(!open2)} className="flex items-center justify-between w-full mb-3 md:hidden">
-              <h3 className="text-[16px] font-medium">Bantuan</h3>
+              <h3 className="text-[16px] font-bold">Bantuan</h3>
               {open2 ? <ChevronDownIcon className="w-5 h-5 text-white" /> : <ChevronRightIcon className="w-5 h-5 text-white" />}
             </button>
 
@@ -213,7 +212,7 @@ export default function Home() {
             )}
 
             <div className="hidden md:block md:ml-[250px]">
-              <h3 className="text-lg font-semibold">Bantuan</h3>
+              <h3 className="text-[16px] font-bold mb-3">Bantuan</h3>
               <ul className="grid grid-cols-1 gap-y-[15px] text-sm text-gray-300">
                 {bantuanList.map((genre, idx) => (
                   <li key={idx}>{genre}</li>
