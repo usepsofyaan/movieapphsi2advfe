@@ -1,12 +1,41 @@
 "use client";
 import { useState } from "react";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 
 export default function Daftar() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setError("Kata sandi tidak cocok");
+      return;
+    }
+
+    try {
+      const res = await axios.post("/api/signup", {
+        username,
+        password,
+      });
+
+      if (res.status === 201) {
+        alert("Berhasil daftar");
+        window.location.href = "/login";
+      }
+    } catch (err) {
+      setError("Terjadi kesalahan saat mendaftar");
+      console.error(err);
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-cover bg-center p-[20px]" style={{ backgroundImage: "url('/backlogin.jpg')" }}>
@@ -28,17 +57,23 @@ export default function Daftar() {
         </div>
 
         {/* Form Login */}
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block mb-1 font-medium text-[#ffffff]">Username</label>
-            <input type="text" className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff]" placeholder="Masukkan username" />
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff]" placeholder="Masukkan username" />
           </div>
 
           {/* Kata sandi*/}
           <div className="mb-4">
             <label className="block mb-1 font-medium text-[#ffffff]">Kata Sandi</label>
             <div className="relative">
-              <input type={showPassword ? "text" : "password"} className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff] pr-10 bg-transparent" placeholder="Masukkan kata sandi" />
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff] pr-10 bg-transparent"
+                placeholder="Masukkan kata sandi"
+              />
               <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white">
                 {showPassword ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
               </button>
@@ -47,7 +82,13 @@ export default function Daftar() {
           <div className="mb-4">
             <label className="block mb-1 font-medium text-[#ffffff]">Konfirmasi Kata Sandi</label>
             <div className="relative">
-              <input type={showPassword2 ? "text" : "password"} className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff] pr-10 bg-transparent" placeholder="Masukkan kata sandi" />
+              <input
+                type={showPassword2 ? "text" : "password"}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff] pr-10 bg-transparent"
+                placeholder="Masukkan kata sandi"
+              />
               <button type="button" onClick={() => setShowPassword2(!showPassword2)} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white">
                 {showPassword2 ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
               </button>
@@ -60,6 +101,8 @@ export default function Daftar() {
               Sudah punya akun? Masuk
             </Link>
           </div>
+
+          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
 
           {/* Tombol Masuk */}
           <button type="submit" className="w-full bg-[#3D4142] text-white py-2 border border-[#E7E3FC3B] rounded-[24px] font-semibold">
