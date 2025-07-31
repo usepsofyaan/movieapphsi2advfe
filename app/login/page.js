@@ -46,12 +46,12 @@ export default function Login() {
 
           {/* Link Daftar & Lupa Sandi */}
           <div className="flex justify-between text-sm mb-4">
-            <a href="/daftar" className="text-[#ffffff]">
+            <Link href="/daftar" className="text-[#ffffff]">
               Belum punya akun? Daftar
-            </a>
-            <a href="/lupa-password" className="text-[#ffffff]">
+            </Link>
+            <Link href="/lupa-password" className="text-[#ffffff]">
               Lupa kata sandi?
-            </a>
+            </Link>
           </div>
 
           {/* Tombol Masuk */}

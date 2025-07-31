@@ -56,9 +56,9 @@ export default function Daftar() {
 
           {/* Link Daftar & Lupa Sandi */}
           <div className="flex justify-between text-sm mb-4">
-            <a href="/login" className="text-[#ffffff]">
+            <Link href="/login" className="text-[#ffffff]">
               Sudah punya akun? Masuk
-            </a>
+            </Link>
           </div>
 
           {/* Tombol Masuk */}
