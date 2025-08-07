@@ -3,9 +3,32 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
+import { supabase } from "../lib/supabase";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const router = useRouter();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      setErrorMsg(error.message);
+      return;
+    }
+
+    alert("Login berhasil");
+    router.push("/"); // ganti sesuai kebutuhan
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: "url('/backlogin.jpg')" }}>
@@ -27,17 +50,27 @@ export default function Login() {
         </div>
 
         {/* Form Login */}
-        <form>
+        <form onSubmit={handleLogin}>
           <div className="mb-4 flex flex-col space-y-[6px]">
             <label className="font-medium text-[#ffffff]">Username</label>
-            <input type="text" className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff]" placeholder="Masukkan username" />
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff]" placeholder="Masukkan username" />
           </div>
 
           {/* Kata sandi*/}
           <div className="mb-4 flex flex-col space-y-[12px]">
             <label className="block font-medium text-[#ffffff]">Kata Sandi</label>
             <div className="relative">
-              <input type={showPassword ? "text" : "password"} className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff] pr-10 bg-transparent" placeholder="Masukkan kata sandi" />
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff] pr-10 bg-transparent"
+                placeholder="Masukkan kata sandi"
+              />
+
+              {errorMsg && <p className="text-red-500">{errorMsg}</p>}
+
               <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white">
                 {showPassword ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
               </button>
