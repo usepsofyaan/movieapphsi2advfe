@@ -79,43 +79,42 @@ export default function Home() {
                 {/* Hover Preview (tampil di atas gambar utama) */}
               </div>
             ))}
-          </div>
+            <div>
+              {visibleItems.map((src, index) => (
+                <div key={index}>
+                  {hoverIndex === index && (
+                    <div className="absolute -top-[200px] -left-[50px] w-[408px] bg-[#141414] rounded-lg z-50 shadow-xl p-4 flex flex-col gap-3 transition-all duration-200">
+                      {/* Gambar Preview */}
+                      <Image src={src} alt="Preview" width={408} height={230} className="object-cover rounded-md" />
 
-          <div>
-            {visibleItems.map((src, index) => (
-              <div key={index}>
-                {hoverIndex === index && (
-                  <div className="absolute -top-[200px] -left-[50px] w-[408px] bg-[#141414] rounded-lg z-50 shadow-xl p-4 flex flex-col gap-3 transition-all duration-200">
-                    {/* Gambar Preview */}
-                    <Image src={src} alt="Preview" width={408} height={230} className="object-cover rounded-md" />
+                      {/* Tombol-tombol */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex gap-2">
+                          <button className="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-300">▶</button>
+                          <button className="bg-neutral-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-neutral-600">✓</button>
+                          <button className="bg-neutral-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-neutral-600">⌄</button>
+                        </div>
+                      </div>
 
-                    {/* Tombol-tombol */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <button className="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-300">▶</button>
-                        <button className="bg-neutral-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-neutral-600">✓</button>
-                        <button className="bg-neutral-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-neutral-600">⌄</button>
+                      {/* Info Tambahan */}
+                      <div className="flex items-center gap-2 text-gray-300 text-sm">
+                        <span className="border border-gray-400 px-2 py-[2px] rounded text-xs">13+</span>
+                        <span>16 Episode</span>
+                      </div>
+
+                      {/* Genre */}
+                      <div className="text-sm text-gray-400 flex gap-2">
+                        <span>Misteri</span>
+                        <span>•</span>
+                        <span>Kriminal</span>
+                        <span>•</span>
+                        <span>Fantasi</span>
                       </div>
                     </div>
-
-                    {/* Info Tambahan */}
-                    <div className="flex items-center gap-2 text-gray-300 text-sm">
-                      <span className="border border-gray-400 px-2 py-[2px] rounded text-xs">13+</span>
-                      <span>16 Episode</span>
-                    </div>
-
-                    {/* Genre */}
-                    <div className="text-sm text-gray-400 flex gap-2">
-                      <span>Misteri</span>
-                      <span>•</span>
-                      <span>Kriminal</span>
-                      <span>•</span>
-                      <span>Fantasi</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
 
           <button onClick={next} className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-10 bg-black/60 text-white p-2 rounded-full hover:bg-black">

@@ -15,6 +15,7 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setErrorMsg("");
 
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
@@ -22,12 +23,15 @@ export default function Login() {
     });
 
     if (error) {
-      setErrorMsg(error.message);
+      if (error.message.includes("Invalid login credentials")) {
+        setErrorMsg("Email atau kata sandi salah.");
+      } else {
+        setErrorMsg(error.message);
+      }
       return;
     }
 
-    alert("Login berhasil");
-    router.push("/"); // ganti sesuai kebutuhan
+    router.push("/profil"); // ganti sesuai kebutuhan
   };
 
   return (
