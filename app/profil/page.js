@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 
 export default function Profil() {
   const [preview, setPreview] = useState(null);
@@ -77,6 +78,7 @@ export default function Profil() {
           </button>
         </form>
       </div>
+      <Footer />
     </>
   );
 }

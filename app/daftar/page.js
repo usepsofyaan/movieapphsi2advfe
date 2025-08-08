@@ -62,7 +62,7 @@ export default function Daftar() {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block mb-1 font-medium text-[#ffffff]">Username</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff]" placeholder="Masukkan username" />
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full border border-[#E7E3FC3B] rounded-[24px] px-3 py-2 text-[#ffffff]" placeholder="Masukkan username atau email" />
           </div>
 
           {/* Kata sandi*/}
