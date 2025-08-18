@@ -150,10 +150,6 @@ export default function Profil() {
             {loading ? "Menyimpan..." : "Simpan"}
           </button>
         </form>
-
-        <div className="bg-[#3D4142] rounded-[12px]">
-          <h1 className="text-black">Saat ini anda belum berlangganan</h1>
-        </div>
       </div>
       <Footer />
     </>
