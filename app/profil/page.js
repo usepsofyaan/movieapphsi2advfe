@@ -70,7 +70,7 @@ export default function Profil() {
       if (file) {
         const fileExt = file.name.split(".").pop();
         const fileName = `${user.id}.${fileExt}`;
-        const filePath = `avatars/${fileName}`;
+        const filePath = `${user.id}/${fileName}`;
 
         const { error: uploadError } = await supabase.storage.from("avatars").upload(filePath, file, { upsert: true });
 
@@ -150,6 +150,10 @@ export default function Profil() {
             {loading ? "Menyimpan..." : "Simpan"}
           </button>
         </form>
+
+        <div className="bg-[#3D4142] rounded-[12px]">
+          <h1 className="text-black">Saat ini anda belum berlangganan</h1>
+        </div>
       </div>
       <Footer />
     </>
