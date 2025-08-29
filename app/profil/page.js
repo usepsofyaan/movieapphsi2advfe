@@ -1,44 +1,43 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import { supabase } from "../lib/supabase";
+import { getCurrentUser, updateProfile } from "../services/usersApi";
 
 export default function Profil() {
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null);
+  const [userId, setUserId] = useState(null);
   const [file, setFile] = useState(null);
 
   const [formData, setFormData] = useState({
     nama: "",
     email: "",
     password: "",
+    avatar_url: "",
   });
 
-  // Ambil data user login
+  // Ambil data user login + tabel users
   useEffect(() => {
-    const getUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (user) {
-        setUser(user);
-
-        // Ambil data dari tabel users
-        const { data } = await supabase.from("users").select("*").eq("id", user.id).single();
-
-        if (data) {
+    const fetchUser = async () => {
+      try {
+        const user = await getCurrentUser();
+        if (user) {
+          setUserId(user.id);
           setFormData({
-            nama: data.nama || "",
-            email: data.email || user.email,
+            nama: user.nama || "",
+            email: user.email || "",
             password: "",
+            avatar_url: user.avatar_url || "",
           });
-          setPreview(data.avatar_url || "/avatar.png");
+          setPreview(user.avatar_url || "/avatar.png");
         }
+      } catch (err) {
+        console.error("Gagal mengambil user:", err);
       }
     };
-    getUser();
+    fetchUser();
   }, []);
 
   const handleFileChange = (e) => {
@@ -60,51 +59,13 @@ export default function Profil() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user) return;
+    if (!userId) return;
 
     setLoading(true);
     try {
-      let avatarUrl = preview;
-
-      // Upload foto baru jika ada
-      if (file) {
-        const fileExt = file.name.split(".").pop();
-        const fileName = `${user.id}.${fileExt}`;
-        const filePath = `${user.id}/${fileName}`;
-
-        const { error: uploadError } = await supabase.storage.from("avatars").upload(filePath, file, { upsert: true });
-
-        if (uploadError) throw uploadError;
-
-        const { data: publicUrl } = supabase.storage.from("avatars").getPublicUrl(filePath);
-
-        avatarUrl = publicUrl.publicUrl;
-      }
-
-      // Update email & password di Auth
-      const updates = {};
-      if (formData.email && formData.email !== user.email) {
-        updates.email = formData.email;
-      }
-      if (formData.password) {
-        updates.password = formData.password;
-      }
-      if (Object.keys(updates).length > 0) {
-        const { error: authError } = await supabase.auth.updateUser(updates);
-        if (authError) throw authError;
-      }
-
-      // Update tabel users
-      const { error: dbError } = await supabase.from("users").upsert({
-        id: user.id,
-        nama: formData.nama,
-        email: formData.email,
-        avatar_url: avatarUrl,
-      });
-
-      if (dbError) throw dbError;
-
+      await updateProfile(userId, formData, file);
       alert("Profil berhasil diperbarui!");
+      setFormData((prev) => ({ ...prev, password: "" })); // kosongkan password setelah update
     } catch (error) {
       console.error(error);
       alert("Gagal menyimpan profil!");
@@ -117,7 +78,7 @@ export default function Profil() {
     <>
       <Navbar />
       <div className="max-w-3xl mx-auto p-6">
-        <h1 className="text-[20px] md-text-[32px] font-bold mb-6">Profil Saya</h1>
+        <h1 className="text-[20px] md:text-[32px] font-bold mb-6">Profil Saya</h1>
 
         <div className="flex items-center mb-6">
           <img src={preview || "/avatar.png"} alt="Foto Profil" className="w-[140px] h-[140px] rounded-full object-cover border" />
@@ -146,7 +107,7 @@ export default function Profil() {
             <input type="password" name="password" value={formData.password} onChange={handleChange} className="w-full border border-[#E7E3FC3B] rounded-[8px] px-3 py-2" placeholder="Masukkan password baru" />
           </div>
 
-          <button type="submit" disabled={loading} className={`px-6 py-2 rounded-[24px] text-white ${loading ? "bg-[#09147A]" : "bg-[#09147A] hover:bg-[#09147A]-600"}`}>
+          <button type="submit" disabled={loading} className={`px-6 py-2 rounded-[24px] text-white ${loading ? "bg-[#09147A] opacity-70 cursor-not-allowed" : "bg-[#09147A] hover:bg-[#09147A]/80"}`}>
             {loading ? "Menyimpan..." : "Simpan"}
           </button>
         </form>
