@@ -62,10 +62,10 @@ export default function Content() {
             <ChevronLeftIcon className="w-5 h-5" />
           </button>
 
+          {/* Gambar utama */}
           <div className="flex overflow-hidden gap-4">
             {visibleItems.map((src, index) => (
               <div key={index} className="relative w-[302px] h-[162px] flex-shrink-0 rounded-lg overflow-hidden" onMouseEnter={() => setHoverIndex(index)} onMouseLeave={() => setHoverIndex(null)}>
-                {/* Gambar utama */}
                 <Image src={src} alt={`Film ${startIndex + index + 1}`} width={302} height={162} className="object-cover w-full h-full rounded-lg" />
 
                 {/* Overlay teks */}
@@ -74,45 +74,39 @@ export default function Content() {
                   <span className="text-right text-[14px] md:text-[18px]">⭐ 8.5/10</span>
                 </div>
 
-                {/* Hover Preview (tampil di atas gambar utama) */}
-              </div>
-            ))}
-            <div>
-              {visibleItems.map((src, index) => (
-                <div key={index}>
-                  {hoverIndex === index && (
-                    <div className="absolute -top-[200px] -left-[50px] w-[408px] bg-[#141414] rounded-lg z-50 shadow-xl p-4 flex flex-col gap-3 transition-all duration-200">
-                      {/* Gambar Preview */}
-                      <Image src={src} alt="Preview" width={408} height={230} className="object-cover rounded-md" />
+                {/* Preview muncul di atas gambar utama */}
+                {hoverIndex === index && (
+                  <div className="absolute left-1/2 -translate-x-1/2 -top-[220px] w-[408px] bg-[#141414] rounded-lg z-50 shadow-xl p-4 flex flex-col gap-3 transition-all duration-200">
+                    {/* Gambar Preview */}
+                    <Image src={src} alt="Preview" width={408} height={230} className="object-cover rounded-md" />
 
-                      {/* Tombol-tombol */}
-                      <div className="flex items-center justify-between">
-                        <div className="flex gap-2">
-                          <button className="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-300">▶</button>
-                          <button className="bg-neutral-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-neutral-600">✓</button>
-                          <button className="bg-neutral-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-neutral-600">⌄</button>
-                        </div>
-                      </div>
-
-                      {/* Info Tambahan */}
-                      <div className="flex items-center gap-2 text-gray-300 text-sm">
-                        <span className="border border-gray-400 px-2 py-[2px] rounded text-xs">13+</span>
-                        <span>16 Episode</span>
-                      </div>
-
-                      {/* Genre */}
-                      <div className="text-sm text-gray-400 flex gap-2">
-                        <span>Misteri</span>
-                        <span>•</span>
-                        <span>Kriminal</span>
-                        <span>•</span>
-                        <span>Fantasi</span>
+                    {/* Tombol-tombol */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex gap-2">
+                        <button className="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-300">▶</button>
+                        <button className="bg-neutral-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-neutral-600">✓</button>
+                        <button className="bg-neutral-700 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-neutral-600">⌄</button>
                       </div>
                     </div>
-                  )}
-                </div>
-              ))}
-            </div>
+
+                    {/* Info Tambahan */}
+                    <div className="flex items-center gap-2 text-gray-300 text-sm">
+                      <span className="border border-gray-400 px-2 py-[2px] rounded text-xs">13+</span>
+                      <span>16 Episode</span>
+                    </div>
+
+                    {/* Genre */}
+                    <div className="text-sm text-gray-400 flex gap-2">
+                      <span>Misteri</span>
+                      <span>•</span>
+                      <span>Kriminal</span>
+                      <span>•</span>
+                      <span>Fantasi</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
 
           <button onClick={next} className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-10 bg-black/60 text-white p-2 rounded-full hover:bg-black">
