@@ -18,7 +18,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <Link href="/series" className="hover:underline text-[10px] md:text-[18px] font-medium">
+        <Link href="/movies" className="hover:underline text-[10px] md:text-[18px] font-medium">
           Series
         </Link>
         <Link href="/film" className="hover:underline text-[10px] md:text-[18px] font-medium">

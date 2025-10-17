@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import MoviesPage from "../movies/page";
 
 const thumbnails = ["/film1.png", "/film2.png", "/film3.png", "/film4.png", "/film5.png", "/film10.png", "/film11.png", "/film13.png"];
 
@@ -143,19 +144,10 @@ export default function Content() {
       <section className="px-4 md:px-20 py-[20px] md:py-[40px]">
         <h2 className="text-[20px] md:text-[32px] font-bold mb-4">Film Trending</h2>
         <div className="relative">
-          {/* Tombol navigasi */}
           <button onClick={prev} className="absolute left-[-20px] top-1/2 -translate-y-1/2 z-10 bg-black/60 text-white p-2 rounded-full hover:bg-black">
             <ChevronLeftIcon className="w-5 h-5" />
           </button>
-
-          <div className="flex overflow-hidden gap-4">
-            {visibleItems2.map((src, index) => (
-              <div key={index} className="w-[95px] h-[145px] md:w-[234px] md:h-[365px] flex-shrink-0 rounded-lg overflow-hidden">
-                <Image src={src} alt={`Film ${startIndex + index + 1}`} width={302} height={162} className="object-cover w-full h-full" />
-              </div>
-            ))}
-          </div>
-
+          <MoviesPage />
           <button onClick={next} className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-10 bg-black/60 text-white p-2 rounded-full hover:bg-black">
             <ChevronRightIcon className="w-5 h-5" />
           </button>
