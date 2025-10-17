@@ -5,7 +5,7 @@ export async function GET() {
     const res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=id-ID&page=1`);
 
     if (!res.ok) {
-      return Response.json({ error: "Gagal mengambil data TMDB" }, { status: res.status });
+      return Response.json({ error: "Gagal mengambil data" }, { status: res.status });
     }
 
     const data = await res.json();
